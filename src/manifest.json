@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "99Freelas IA Proposals",
+  "description": "Agente de IA para analisar projetos e preencher propostas no 99Freelas.",
+  "version": "0.1.0",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_title": "99Freelas IA"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "src/background/service-worker.ts",
+    "type": "module"
+  },
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://*.99freelas.com.br/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.99freelas.com.br/*"],
+      "js": ["src/content/index.ts"],
+      "run_at": "document_idle"
+    }
+  ]
+}
